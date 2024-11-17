@@ -8,13 +8,14 @@ pygame.display.toggle_fullscreen()
 
 playerObj = Player(960,540,4)
 player = pygame.sprite.Group()
-player.add(playerObj)
 tileGroup = pygame.sprite.Group()
 clock = pygame.time.Clock()
 f=0
 time=0
 orientation=0
 isMoving=False
+
+player.add(playerObj)
 
 tmx = load_pygame('data/tiled/tmx/test.tmx')
 for layer in tmx.visible_layers:
