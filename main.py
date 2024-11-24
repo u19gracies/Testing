@@ -7,6 +7,7 @@ screen = pygame.display.set_mode((1920, 1080))
 pygame.display.toggle_fullscreen()
 
 #work on a system to place items on the background as coordinates rather than onto screen as causes placement to move depending on where the player is.
+#for above, create markers in tiled, give them a rectangle for pickup area and display image onto them when item is within area of the player
 #make a way to check which item is actually being picked up
 
 start = pygame.image.load('data/images/startButton.png').convert_alpha()
@@ -25,6 +26,10 @@ for layer in tmx.visible_layers:
         for x, y, surf in layer.tiles():
             pos = (x*16, y*16)
             bgSurf.blit(surf, pos)
+
+for obj in tmx.objects:
+    if obj.name == "Sword":
+        print(obj.frames)
 
 background = BG(bgSurf)
 

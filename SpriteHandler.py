@@ -82,6 +82,7 @@ class BG():
       self.offset = pygame.Vector2(0,0)
 
     return self.image
+  
 
 
 class Item(pygame.sprite.Sprite):
