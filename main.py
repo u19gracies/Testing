@@ -28,8 +28,9 @@ for layer in tmx.visible_layers:
             bgSurf.blit(surf, pos)
 
 for obj in tmx.objects:
-    if obj.name == "Sword":
-        print(obj.frames)
+    if obj.name == "Plinth":
+        pos = (obj.x, obj.y)
+        bgSurf.blit(obj.image, pos)
 
 background = BG(bgSurf)
 
@@ -38,10 +39,10 @@ def mainloop(bgSurf):
     player = pygame.sprite.Group()
     itemGroup = pygame.sprite.Group()
     clock = pygame.time.Clock()
-    swordItem = Item(2000,500,swordImg,3,True)
-    player2 = Item(1920,1080,player2Img,10,False)
+    swordItem = Item(1952,1350,swordImg,4,True)
+    #player2 = Item(1920,1080,player2Img,10,False)
     itemGroup.add(swordItem)
-    itemGroup.add(player2)
+    #itemGroup.add(player2)
 
     player.add(playerObj)
 
@@ -119,6 +120,10 @@ def mainloop(bgSurf):
 
         itemtime+=1
 
+
+        print(background.rect.x, background.rect.y)
+        
+
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a] and keys[pygame.K_d] or keys[pygame.K_w] and keys[pygame.K_s]:
             isMoving=False
@@ -154,7 +159,7 @@ def mainloop(bgSurf):
                     swordHeld = False
                     playerSpeed = 4
                     walkf=0
-                    itemGroup.add(Item(2000,500,swordImg,3,True))
+                    itemGroup.add(Item(1952+background.rect.x,1350+background.rect.y,swordImg,4,True))
             elif not pygame.mouse.get_pressed()[0]:
                     canAttack=True
 
@@ -177,6 +182,7 @@ def mainloop(bgSurf):
             if item != None:
                 swordHeld = True
                 playerSpeed = 3
+                
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
